@@ -1,3 +1,5 @@
+# Ratpoison tiling window manager configuration file
+
 ## bind z exec "$HOME/.kbdlayout"
 
 exec unclutter -idle 5 -jitter 2 -root &
