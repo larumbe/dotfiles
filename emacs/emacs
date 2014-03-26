@@ -1,0 +1,458 @@
+;; You need to set the whole file in org mode for drawers
+;; and additional references
+
+;; Global unsets
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-M-z") 'suspend-frame)
+
+;; Paquetes y esas cosas
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+(elpy-enable)
+(elpy-use-ipython)
+(global-set-key (kbd "C-z C-p") 'package-list-packages)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; Beautification ;;;;;;;
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+
+;; I do not want a welcome message
+(setq inhibit-startup-message t)
+
+;; Mode line stuff
+;; (display-time-mode t)
+(column-number-mode t)
+;; (size-indication-mode t)x
+
+;; Revisa esto, es codigo feo
+(load-file "~/.emacs.d/etags-select.el")
+(load-file "~/.emacs.d/tags.el")
+(require 'etags-select)
+
+;; I-resize mode
+;; Tienes que mejorar este codigo, es una puta mierda
+(load-file "~/.emacs.d/iresize.el")
+(require 'iresize)
+;; C-x r is for registers
+;; (global-set-key "\C-xr" 'iresize-mode)
+(global-set-key (kbd "C-z r") 'iresize-mode)
+
+;; Switch windows
+(load-file "~/emacs/.emacs.d/switchwindow.el")
+;; MIRA ESTO
+;; global-set-key: Key sequence C-z w starts with non-prefix key C-z
+(global-set-key (kbd "C-z C-w") 'switchwindow-mode)
+
+;; Fast motion
+;; Maybe this makes previous mode useless
+;; (define-prefix-command 'window-motion)
+;; (global-set-key (kbd "C-z") 'window-motion)
+;; (global-set-key (kbd "C-z k") 'windmove-up)
+;; (global-set-key (kbd "C-z j") 'windmove-down)
+;; (global-set-key (kbd "C-z h") 'windmove-left)
+;; (global-set-key (kbd "C-z l") 'windmove-right)
+(global-set-key (kbd "C-z C-k") 'windmove-up)
+(global-set-key (kbd "C-z C-j") 'windmove-down)
+(global-set-key (kbd "C-z C-h") 'windmove-left)
+(global-set-key (kbd "C-z C-l") 'windmove-right)
+
+;; Motion mode
+(load-file "~/emacs/.emacs.d/motion-mode.el")
+
+;; Las dos que siguen, yas y autocomplete
+;; A ver si consigues enterarte de como remapear yas-expand para que sea
+;; C-y y autocomplete sea el puto tab de los cojones
+;; !!!!!!!!!!!!!!!!!!!
+
+;; yas-snippets
+(load-file "~/emacs/.emacs.d/yas-start.el")
+
+;; Auto-complete settings
+(load-file "~/emacs/.emacs.d/autocomplete-start.el")
+
+;; Fuera barras de desplazamiento
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; Avance progresivo
+(setq scroll-step 1)
+
+;; Other window scroll
+(global-set-key (kbd "C-x P") 'mark-page)
+(global-set-key (kbd "C-x C") 'set-goal-column)
+(global-set-key (kbd "C-x C-n") 'scroll-other-window)
+(global-set-key (kbd "C-x C-p") 'scroll-other-window-down)
+
+;; Paragraph motion
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+
+;; Shell mode
+(add-hook 'shell-mode-hook (lambda () (interactive)(define-key shell-mode-map (kbd "C-c i") 'send-invisible)))
+(add-hook 'shell-mode-hook (lambda () (interactive)(define-key shell-mode-map (kbd "C-'") '(lambda () (interactive) (insert "-")))))
+(global-set-key (kbd "C-z C-s") 'shell)
+
+;; Imenu and insert file
+(global-set-key (kbd "C-x M-i") 'insert-file)
+(global-set-key (kbd "C-x i") 'imenu)
+
+;; Viper mode
+;; Superseded by motion mode
+;; (global-set-key (kbd "C-x C-z") 'toggle-viper-mode)
+
+;; Cosas de parentesis e ido
+(electric-pair-mode t)
+(show-paren-mode t)
+(iswitchb-mode t)
+;; Ido es pesadisimo, tendras que encontrar alterantivas
+;; (ido-mode t)
+(global-set-key (kbd "C-x C-j") 'idomenu)
+
+;; Yanking in the opposite direction
+(defun yank-pop-forwards (arg)
+  (interactive "p")
+  (yank-pop (- arg)))
+
+(global-set-key (kbd "C-M-y") 'yank-pop-forwards)
+
+;; Mas atajos de teclado para comodidad
+(global-set-key (kbd "C-M-]") 'eval-expression)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-x C-k") 'kill-region)
+(global-set-key (kbd "C-z p") 'pop-tag-mark)
+;; (global-set-key (kbd "C-x p") 'switch-to-prev-buffer)
+;; (global-set-key (kbd "C-x p") 'previous-buffer)
+(defun switch-to-previous-buffer ()
+  "Goes to the most recent previous buffer"
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+(global-set-key (kbd "C-x p") 'switch-to-previous-buffer)
+
+;; Anything mode
+(global-set-key (kbd "C-x a") 'anything)
+;; (global-set-key (kbd "C-q m") 'anything-help)
+(define-key anything-map (kbd "C-q m") 'anything-help)
+
+;; Help key bindings
+(global-set-key (kbd "C-q") 'help-command)
+;; (global-set-key (kbd "C-q G") 'describe-gnu-project)
+(global-set-key (kbd "C-q g") 'find-function) ; Go to function definition
+(global-set-key (kbd "C-q C-q") 'quoted-insert)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
+;; ERC
+(global-set-key (kbd "C-z e") 'erc-iswitchb)
+
+;; AuCTeX stuff
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+;; For the navigator
+(setq browse-url-browser-function 'w3m-browse-url)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Program modes start here ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Como puedo hacer para que solo se cargue el fichero si se llama al modo
+;; Y en una sola vez, se haga en sucesivas aperturas de ficheros de tal modo
+
+;; PHP
+(load-file "~/emacs/.emacs.d/php-start.el")
+
+;; Perl
+;; (load-file "~/emacs/.emacs.d/perl-mode-start.el")
+
+;; Python
+(load-file "~/emacs/.emacs.d/python-start.el")
+
+;; HTMl
+
+;; Java
+(load-file "~/emacs/.emacs.d/java-start.el")
+
+;; Haskell
+(load-file "~/emacs/.emacs.d/haskell-mode-start.el")
+
+;; Bash
+
+;; emacs-lisp-mode
+(load-file "~/emacs/.emacs.d/elisp-mode-start.el")
+
+;; c-mode
+(load-file "~/emacs/.emacs.d/c-mode-start.el")
+
+;; C++
+
+;; ASM
+(load-file "~/emacs/.emacs.d/asm-start.el")
+
+;; Maple
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Program modes end here ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Ibus
+(setq instalacion "~/emacs/.emacs.d/")
+(load-file (concat instalacion "ibus-dev.el"))
+(global-set-key (kbd "C-c C-\\") 'ibus-mode)
+(defun start-ibus ()
+  (interactive)
+  (ibus-enable)
+  (ibus-mode)
+  )
+(global-set-key (kbd "C-z C-b") 'start-ibus)
+
+;; Sudo editing of files
+(defun su-edit ()
+  "Edit the current buffer file as superuser."
+  (interactive)
+  (let ((window-start (window-start))
+        (point        (point))
+        (mark (if mark-active (region-beginning) nil)) )
+    (find-alternate-file (format "/sudo::%s" (buffer-file-name)))
+    (if mark (set-mark mark))
+    (goto-char point)
+    (set-window-start nil window-start) ; nil - the selected window
+    ))
+
+;; Function for swapping windows
+
+;; GNUS
+(load-file "~/emacs/.gnus.el")
+(global-set-key (kbd "C-z g") 'gnus)
+
+;; Dictionary mode for w3m
+(require 'w3m)
+(define-key w3m-mode-map (kbd "C-c d") 'dic-lookup-w3m)
+
+;; Eclim
+(require 'eclim)
+(require 'eclimd )
+(setq eclim-executable "/opt/eclipse/eclim")
+(custom-set-variables '(eclim-eclipse-dirs '("/opt/eclipse")))
+(setq eclimd-executable "/opt/eclipse/eclimd")
+;; (setq eclimd-wait-for-process nil)
+;; start-eclimd para iniciar el demonio
+;; Esto tendras que verlo, en autocomplete
+(require 'auto-complete-config)
+(ac-config-default)
+(require 'ac-emacs-eclim-source)
+(ac-emacs-eclim-config)
+
+;; ECB
+(require 'ecb)
+(global-set-key (kbd "C-x C-M-e") 'ecb-minor-mode)
+(define-prefix-command 'ecb-myprefix nil "Goto ECB Frame (1,2,c,d,h,m,s)")
+(define-key ecb-mode-map (kbd "C-c C-.") 'ecb-myprefix)
+(define-key ecb-myprefix (kbd "1") 'ecb-goto-window-edit1)
+(define-key ecb-myprefix (kbd "2") 'ecb-goto-window-edit2)
+(define-key ecb-myprefix (kbd "c") 'ecb-goto-window-compilation)
+(define-key ecb-myprefix (kbd "d") 'ecb-goto-window-directories)
+(define-key ecb-myprefix (kbd "h") 'ecb-goto-window-history)
+(define-key ecb-myprefix (kbd "m") 'ecb-goto-window-methods)
+(define-key ecb-myprefix (kbd "s") 'ecb-goto-window-sources)
+
+;; Quiza todo lo de semantic deberia ir aqui
+
+;; Flymake stuff
+;; SHOULD DISPLAY ERRORS IN BUFFER
+;; Customize how flymake displays the errors
+'(flymake-errline ((((class color)) (:underline "OrangeRed"))))
+'(flymake-warnline ((((class color)) (:underline "yellow"))))
+;; Define our own flymake error function
+(defun my-flymake-show-next-error ()
+  (interactive)
+  (flymake-goto-next-error)
+  (flymake-display-err-menu-for-current-line))
+;; And set it to the shortcut C-c C-v
+(add-hook 'c-mode-common-hook
+  (lambda ()
+    ;; (flymake-mode t)
+    ;; (global-set-key "\C-c\C-v" 'my-flymake-show-next-error)
+    ))
+
+;; Macros
+;; Use M-RET as a macro prefix
+;; Dot mode for redoing
+;; Cx q kbd-macro-query en el prefijo que dije antes
+;; Repeat last command?
+(global-set-key (kbd "C-.") 'repeat)
+;; Look commands for marking different objects
+(global-set-key (kbd "C-z SPC") 'delete-trailing-whitespace)
+;; ibuffer mode
+;; (global-set-key (kbd "C-x C-b") 'ibuffer-list-buffers)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+;; iswitchbf-highlight
+;; (load-file "~/emacs/.emacs.d/switchwindow.el")
+;; usa mas los menus
+;; iswitch menu no funciona, pero usa los menos de alguna forma
+
+;; Icicles
+;; You should set a prefix key for all things icicles
+(global-set-key (kbd "C-x c") 'icy-mode)
+;; icicle-goto-marker
+;; icicle-goto-global-marker
+
+;; Find file other vertical window
+(defun iswitchb-other-window-vertical ()
+  "Switching to another buffer, but this shows on a upright window"
+  (interactive)
+  (split-window-right)
+  (iswitchb-buffer-other-window))
+(global-set-key (kbd "C-x 4 C-b") 'iswitchb-other-window-vertical)
+
+;; X WINDOWS
+;; kill-buffer-other-window
+;; swap-windows
+
+;; X MOTION
+;; Puedes reasignar C-M-v scroll-other-window
+
+;; 11 MARK
+;; (delete-selection-mode ) ; causes self-insert-command to replace text in the active region
+;; Another library for marking things thing-cmds.el (ThingAtPointCommands)
+;; Need to make this library run, seems a lot better
+;; Automark
+;; Mark-tools
+;; MakingMarkVisible
+;; Anything mark
+;; Con icycles para ver el mark ring
+
+;; http://www.emacswiki.org/emacs/MarkCommands
+
+;; Thing at point and add-ons
+(require 'thing-cmds)
+;; (thgcmd-bind-keys) ; Only if you want the key bindings it defines
+
+(defun mark-a-word-or-thing (arg)
+  "Select word on or before current point, and move point to beginning of word.
+
+    With a prefix ARG, first prompts for type of things and select ARG things
+    but you need to move the point to the beginnig of thing first.
+
+    But if a thing has been selected, then extend the selection by one thing
+    on the other side of the point.
+    (So to select backwards, select to the right first.)"
+  (interactive "P")
+  (if (or arg mark-active)
+      (call-interactively 'mark-thing)
+    (skip-syntax-backward "w_")
+    (mark-thing 'symbol)))
+
+(global-set-key (kbd "C-x w") 'mark-a-word-or-thing)
+
+
+;;; 9 - RUNNING COMMANDS BY NAME
+;;; execute-extended-command
+(global-set-key (kbd "C-z C-e") 'execute-extended-command)
+
+;; 12.1 KILLING
+(global-set-key (kbd "C-z M-i") 'delete-indentation)
+(global-set-key (kbd "C-z k") 'kill-whole-line)
+(global-set-key (kbd "C-z M-k") 'backward-kill-sentence)
+
+;; 12.2 YANKING
+;; Something that combines append-to-last-kill and kill
+;; in the same command
+
+;; RECTANCLES
+
+;; 13 REGISTERS
+;; view-register es extremadamente ineficiente
+;; I don't know which registers have bound values
+;; anything register interface
+;; Position registers, how to jump fast to them
+
+;;; 18 FILES
+;;; 
+;; Inserts the default directory into the minibuffer as the initial contents
+;; (setq insert-default-directory nil)
+;; (global-set-key (kbd "C-z M-p") 'pwd)
+;;; List of functions to be called after a file is successfully loaded
+;; (setq find-file-hook ?)
+
+
+;;; 19 BUFFERS
+(defun kill-buffer-other-window ()
+  "Kills buffer in the other window, make sure there are only two of them"
+  (interactive)
+  ;; How to make sure there are only two displayed windows
+  (other-window 1)
+  (kill-buffer)
+  ;; This should be done with save-excursion most likely
+  (other-window 1))
+(global-set-key (kbd "C-z 0") 'kill-buffer-other-window)
+
+;;; 24 - INDENTATION
+;; (setq-default tab-width 4)
+
+(global-set-key (kbd "C-z i") 'indent-relative)
+
+;; 28 MAINTAINING LARGE PROGRAMMES
+;; Version control and the like
+;; http://www.emacswiki.org/emacs/Git
+;; http://alexott.net/en/writings/emacs-vcs/EmacsGit.html
+;; Magit, most popular interface
+(autoload 'magit-status "magit" nil t)
+(global-set-key (kbd "C-z m") 'magit-status)
+;; magit-repo-dirs (default repositories to look at after magit-status)
+
+
+(global-set-key (kbd "C-z l") 'load-file)
+
+(global-set-key (kbd "C-z C-f") 'fill-region)
+
+;;; DIRED
+;; Just a single dired buffer
+;; Por que cojones no funciona?
+(require 'dired-single)
+;;;
+(define-key dired-mode-map (kbd "C-c C-w") 'wdired-change-to-wdired-mode)
+
+;;; Inactivie minibuffer mode
+(define-key minibuffer-local-map (kbd "C-'") 'print-hyphen)
+
+
+;; Reference card things ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Learn about dired, dired enhanced ;;
+
+;;; Anything setup
+;;; http://www.emacswiki.org/emacs/Anything
+;;; http://metasandwich.com/2010/07/30/what-can-i-get-for-10-dolla-anything-el/
+;;; anything.el basic stuff, anything-
+
+;; ORG MODE ;;
+;;;;;;;;;;;;;;
+(require 'org)
+;;; Basic keybindings
+(define-key org-mode-map (kbd "C-c l") 'org-store-link)
+(define-key org-mode-map (kbd "C-c c") 'org-capture)
+(define-key org-mode-map (kbd "C-c b") 'org-iswitchb)
+(define-key org-mode-map (kbd "C-c .") 'org-priority)
+(define-key org-mode-map (kbd "C-c i") 'org-iswitchb)
+(define-key org-mode-map (kbd "C-c t") 'org-time-stamp)
+(define-key org-mode-map (kbd "C-c f") 'org-metaright)
+(define-key org-mode-map (kbd "C-c b") 'org-metaleft)
+(define-key org-mode-map (kbd "C-c n") 'org-metadown)
+(define-key org-mode-map (kbd "C-c p") 'org-metaup)
+(define-key org-mode-map (kbd "C-c '") 'org-insert-todo-heading)
+;;; Capturing stuff
+(setq org-default-notes-file "~/documentos/planificacion/remember.org")
+(define-key global-map (kbd "C-z c") 'org-capture)
+;;; Saving clock history across Emacs sessions
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+;;; Agenda stuff
+(define-key global-map (kbd "C-z a") 'org-agenda)
+;;; Other variables
+(setq org-directory "~/documentos/planificacion/")
+(setq org-mobile-directory "~/documentos/MobileOrg/")
+(setq org-mobile-inbox-for-pull "~/documentos/MobileOrgPull/from-mobile.org")
+(setq org-log-done 'time)
