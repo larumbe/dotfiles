@@ -1,0 +1,168 @@
+!------------------------------------------------------------------------------
+! c o l o r -  s e t t i n g s
+
+! *background: #222222
+! *foreground: #777777
+
+! ! Default
+! ! 0: black
+! *color0:  #222222
+! *color8:  #222222
+! ! 1: red
+! *color1:  #9f6767
+! *color9:  #9f6767
+! ! 2: green
+! *color2:  #92ac68
+! *color10: #92ac68
+! ! 3: yellow
+! *color3:  #d0d293
+! *color11: #d0d293
+! ! 4: blue
+! *color4:  #9aacc3
+! *color12: #9aacc3
+! ! 5: magenta
+! *color5:  #bb77a4
+! *color13: #bb77a4
+! ! 6: cyan
+! *color6:  #77bbb5
+! *color14: #77bbb5
+! ! 7: white
+! *color7:  #777777
+! *color15: #777777
+
+! ! terminal colors ------------------------------------------------------------
+!
+! ! tangoesque scheme
+! *background: #111111
+! *foreground: #babdb6
+! ! Black (not tango) + DarkGrey
+! *color0:  #000000
+! *color8:  #555753
+! ! DarkRed + Red
+! *color1:  #ff6565
+! *color9:  #ff8d8d
+! ! DarkGreen + Green
+! *color2:  #93d44f
+! *color10: #c8e7a8
+! ! DarkYellow + Yellow
+! *color3:  #eab93d
+! *color11: #ffc123
+! ! DarkBlue + Blue
+! *color4:  #204a87
+! *color12: #3465a4
+! ! DarkMagenta + Magenta
+! *color5:  #ce5c00
+! *color13: #f57900
+! !DarkCyan + Cyan (both not tango)
+! *color6:  #89b6e2
+! *color14: #46a4ff
+! ! LightGrey + White
+! *color7:  #cccccc
+! *color15: #ffffff
+
+! More gnome-term like colours
+URxvt.scrollBar: false
+
+URxvt*background: #000000
+URxvt*foreground: #CCCCCC
+
+URxvt*color0: #000000
+URxvt*color1: #CC0000
+URxvt*color2: #4E9A06
+URxvt*color3: #C4A000
+URxvt*color4: #3465A4
+URxvt*color5: #75507B
+URxvt*color6: #06989A
+URxvt*color7: #D3D7CF
+URxvt*color8: #555753
+URxvt*color9: #EF2929
+URxvt*color10: #8AE234
+URxvt*color11: #FCE94F
+URxvt*color12: #729FCF
+URxvt*color13: #AD7FA8
+URxvt*color14: #34E2E2
+URxvt*color15: #EEEEEC
+
+URxvt*font: xft:Monospace:size=12
+URxvt*boldFont: xft:Monospace:bold:size=12
+
+! URxvt*keysym.Home: \033[1~
+! URxvt*keysym.End: \033[4~
+
+! URxvt*xftAutoHint: true
+
+!------------------------------------------------------------------------------
+! u r x v t
+
+ ! URxvt*geometry:         112x22
+ ! URxvt*font:             xft:terminus:size=10
+ ! URxvt*urlLauncher:      firefox
+ ! URxvt*scrollBar:        false
+ ! URxvt*scrollBar_right:  true
+ ! URxvt*scrollColor:      #000000
+ ! Font spacing
+ ! URxvt.letterSpace: -1
+
+! Perl extensions loading
+ URxvt.perl-ext: default,url-select,keyboard-select,clipboard,font-size
+! Esto va todo como el puto culo, tengo que reconfigurarlo
+! URxvt.perl-ext-common: default,url-select,keyboard-select,clipboard,font-size
+
+!--------------------
+! keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+! The following line overwrites the default Meta-s binding and allows
+! to activate keyboard-select directly in backward search mode:
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+!---------------------
+! url-select
+! URxvt.perl-ext-common: ...,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/firefox -new-tab
+URxvt.url-select.underline: true
+
+!-----------------
+! clipboard
+! URxvt.perl-ext-common: ...,clipboard
+URxvt.keysym.M-c:     perl:clipboard:copy
+URxvt.keysym.M-v:     perl:clipboard:paste
+URxvt.keysym.M-C-v:   perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd:	xclip -i -selection clipboard
+URxvt.clipboard.pastecmd:	xclip -o -selection clipboard
+
+!-----------------
+! tabbed
+! Key rebindings
+! Doesn't work
+
+
+!-----------------
+! tabbed-ex
+!
+! Disabling default mappings
+!   URxvt.tabbed.no-tabbed-keys: true
+! ! NEW button
+!   URxvt.tabbedex.new-button: true
+! ! To automatically hide the tabs bar when only one is present
+!   URxvt.tabbed.autohide: true
+! ! Prevent last tab from closing URxvt
+!   URxvt.tabbed.reopen-on-close: yes
+! ! Key mappings for tab control
+!   URxvt.keysym.Control-Alt-t: perl:tabbedex:new_tab
+!   URxvt.keysym.Control-Alt-n: perl:tabbedex:next_tab
+!   URxvt.keysym.Control-Alt-p: perl:tabbedex:prev_tab
+
+!--------------
+! font-size
+!--------------
+! Keybindings
+! You gotta change this, making it more usable, without the boring arrow keys
+  URxvt.keysym.C-Up:	 perl:font-size:increase
+  URxvt.keysym.C-Down:	 perl:font-size:decrease
+  URxvt.keysym.C-S-Up:	 perl:font-size:incglobal
+  URxvt.keysym.C-S-Down: perl:font-size:decglobal
+! If I want this to work
+  URxvt.iso14755: false
+  URxvt.iso14755_52: false
+!--------------
