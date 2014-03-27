@@ -1,0 +1,9 @@
+# Status line setup
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+
+# Default control character, changed to C-i
+# escape "^v"
+escape ^Vv
+
+startup_message off
