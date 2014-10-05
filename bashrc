@@ -77,6 +77,7 @@ fi
 # Por Tutatis y por Belenos, no quiero mensajes de consola
 # ni páginas del manual en castellano
 # export LC_MESSAGES=POSIX
+export LC_MESSAGES="C.UTF-8"
 [[ -f "/home/adrian/.config/autopackage/paths-bash" ]] && . "/home/adrian/.config/autopackage/paths-bash"
 
 # Android nonsense

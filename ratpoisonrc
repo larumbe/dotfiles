@@ -6,8 +6,13 @@ exec unclutter -idle 5 -jitter 2 -root &
 
 bind z exec ibus-daemon
 bind Z exec killall ibus-daemon
+bind , exec alarm-clock-applet
 
+# bind o focus
+bind C-o other
+bind y other
 bind o focus
+bind C-t focus
 bind n focusdown
 bind p focusup
 bind f focusright
