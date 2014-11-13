@@ -28,17 +28,23 @@
 (define-key emacs-lisp-mode-map (kbd "C-c i") 'imenu)
 (define-key emacs-lisp-mode-map (kbd "C-c b") 'speedbar)
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
-(define-key emacs-lisp-mode-map (kbd "C-c j") 'idomenu)
+(define-key emacs-lisp-mode-map (kbd "C-c C-j") 'idomenu)
+(define-key emacs-lisp-mode-map (kbd "C-c C-s") 'speedbar)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'ielm)
 (define-key emacs-lisp-mode-map (kbd "C-;") 'iedit-mode)
+;; (define-key emacs-lisp-mode-map (kbd "C-c s") '(lambda () (interactive) (symbolp (symbol-at-point))))
+;; (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'ecb-activate)
+;; (define-key emacs-lisp-mode-map (kbd "C-c M-e") 'ecb-deactivate)
 
-;;; COMPLETATION: Recuerda usar C-M-i (completion-at-point), es mas rapido que autocomplete
+
+;;; completation: Recuerda usar C-M-i (completion-at-point), es mas rapido que autocomplete
 
 ;; I hate having to draw my hand so far away for typing the hyphen character
 (defun print-hyphen () (interactive) (insert-char ?-))
 (define-key emacs-lisp-mode-map (kbd "C-'") 'print-hyphen)
 ;;; With paredit, this seems to be useless
-(define-key emacs-lisp-mode-map (kbd "C-c C-p") '(lambda () (interactive) (insert "()") (backward-char)))
+;; (define-key emacs-lisp-mode-map (kbd "C-c C-p") '(lambda () (interactive) (insert "()") (backward-char)))
+(define-key emacs-lisp-mode-map (kbd "C-c C-p") 'paredit-open-round)
 
 ;; Como hacer que una variable solo en un modo
 ;; Haz algo para que esto se haga una sola vez, no en cada entrada en elisp-mode

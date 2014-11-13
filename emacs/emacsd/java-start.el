@@ -93,6 +93,7 @@
 (define-key java-mode-map (kbd "C-c C-e C-r") 'eclim-run-class)
 (define-key java-mode-map (kbd "C-c C-e p b") 'eclim-project-build)
 (define-key java-mode-map (kbd "C-c u") '(lambda () (interactive) (insert " = ")))
+(define-key java-mode-map (kbd "C-c i") '(lambda () (interactive) (insert " + ")))
 (define-key java-mode-map (kbd "C-c ;") '(lambda () (interactive)
 					   (move-end-of-line 1)
 					   (insert ";\n")

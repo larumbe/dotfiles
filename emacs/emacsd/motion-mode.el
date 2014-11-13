@@ -6,6 +6,7 @@
     (define-key m (kbd "l") 'forward-char)
     (define-key m (kbd "j") 'next-line)
     (define-key m (kbd "k") 'previous-line)
+    ;; (define-key m (kbd "u") 'motion-mode)
     ;; (define-key m (kbd "C-x M-z") 'motion-mode)
     m))
 
@@ -16,4 +17,4 @@
   :group 'motionm)
 
 (provide 'motionm)
-(global-set-key (kbd "C-z C-v") 'motion-mode)
+(global-set-key (kbd "C-z C-z") 'motion-mode)

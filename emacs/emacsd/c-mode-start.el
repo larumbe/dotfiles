@@ -108,6 +108,7 @@
 
 
 ;; Autocomplete setup
+;;; This is very wrong, i'm overwriting interesting default values
 (defun add-cmode-ac-sources ()
   "Adding c-mode auto-complete sources"
   (setq ac-sources '(ac-source-semantic
@@ -141,6 +142,7 @@
   (nlinum-mode t)
   (which-func-mode)
   (global-semantic-idle-completions-mode)
+  (hl-line-mode)
   )
 
 ;; Finally

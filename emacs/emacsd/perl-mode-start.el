@@ -2,7 +2,7 @@
 ;; There seems to be a wealth of available modes
 ;; 
 ;; BOOKS
-;; Modern Perl http://www.onyxneon.com/books/modern_perl/index.html
+;; Modern Perl http://www.onyxneon.com/books/modern_perl/index.htmlt
 ;; Impatient Perl http://www.perl.org/books/impatient-perl/
 ;;
 ;; SOURCES OF INFORMATION
@@ -21,7 +21,7 @@
 
 ;; Mode customisations
 ;;
-(defalias 'perl-mode 'cperl-mode)
+;; (defalias 'perl-mode 'cperl-mode)
 
 ;; DOCUMENTATION
 ;;;;;;;;;;;;;;;;;;;;;
@@ -46,15 +46,21 @@
   (shell-command-on-region (mark) (point) "perl" "*Perl Output*")
   (display-buffer "*Perl Output*"))
 
-(define-key cperl-mode-map (kbd "C-c C-c") 'perl-on-buffer)
-(define-key cperl-mode-map (kbd "C-c k") '(lambda () (interactive) (kill-buffer "*Perl Output*")))
-
-
+(define-key perl-mode-map (kbd "C-c C-c") 'perl-on-buffer)
+(define-key perl-mode-map (kbd "C-c C-k") '(lambda () (interactive) (kill-buffer "*Perl Output*")))
 
 ;; symbols
-(define-key cperl-mode-map (kbd "C-c u") '(lambda () (interactive) (insert " = ")))
-(define-key cperl-mode-map (kbd "C-c i") '(lambda () (interactive) (insert "_")))
-(define-key cperl-mode-map (kbd "C-c j") '(lambda () (interactive) (insert "$")))
-(define-key cperl-mode-map (kbd "C-c ;") '(lambda () (interactive)
-					     (move-end-of-line 1)
-					     (insert ";")))
+(define-key perl-mode-map (kbd "C-c u") '(lambda () (interactive) (insert " = ")))
+(define-key perl-mode-map (kbd "C-c i") '(lambda () (interactive) (insert "_")))
+(define-key perl-mode-map (kbd "C-c j") '(lambda () (interactive) (insert "$")))
+(define-key perl-mode-map (kbd "C-c k") '(lambda () (interactive) (insert "@")))
+(define-key perl-mode-map (kbd "C-c ;") '(lambda () (interactive)
+					   (move-end-of-line 1)
+					   (insert ";")))
+
+;;; PDE stuff
+;; (define-key cperl-mode-map (kbd "C-c ") 'FUNCNAME)
+
+;;; Send region?
+;;; What the hell is infperl?
+;;; What pde-call-process-region is good for if there's infperl?

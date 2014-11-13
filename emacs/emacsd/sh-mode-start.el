@@ -51,10 +51,43 @@
 ;; Usar shcheck en libs, ver como mejorarlo
 ;; 
 
+;;; Standard mode is shit
+(unload-feature 'sh-script)
+(load-file "./libs/sh-script.el")
+
 ;; Hooks
 (add-hook 'sh-mode-hook 'nlinum-mode)
 (add-hook 'sh-mode-hook 'yas-minor-mode)
 (add-hook 'sh-mode-hook 'flymake-shell-load)
+(add-hook 'sh-mode-hook 'hl-line-mode)
 ;; Anhadir snippets de yasnippet
+
+;;; Flymake setup
+;;; Borra esto y mira que tal funciona la proxima vez
+(require 'flymake-shell)
+(add-hook 'sh-mode-hook 'flymake-shell-load)
+
+;;; Code completion
+;;; Create bash keyword dictionary
+
+;;; Navigation
+(define-key sh-mode-map (kbd "C-c C-j") 'idomenu)
+
+;;; Flymake navigation
+(define-key sh-mode-map (kbd "C-c f") 'flymake-goto-next-error)
+(define-key sh-mode-map (kbd "C-c b") 'flymake-goto-prev-error)
+
+;;; Code execution
+(define-key sh-mode-map (kbd "C-c r") 'sh-execute-region)
+
+;;; Documentation
+(define-key sh-mode-map (kbd "C-c i") 'info-lookup-symbol)
+(defun my:bash-builtin-info ()
+  (interactive)
+  (shell-command (concat "help " (thing-at-point 'word))))
+(define-key sh-mode-map (kbd "C-c h") 'my:bash-builtin-info)
+
+
+
 
 
