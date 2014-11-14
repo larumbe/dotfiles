@@ -110,7 +110,7 @@ URxvt*boldFont: xft:Monospace:bold:size=12
 
 !--------------------
 ! keyboard-select
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-z: perl:keyboard-select:activate
 ! The following line overwrites the default Meta-s binding and allows
 ! to activate keyboard-select directly in backward search mode:
 URxvt.keysym.M-s: perl:keyboard-select:search
@@ -125,6 +125,9 @@ URxvt.url-select.underline: true
 !-----------------
 ! clipboard
 ! URxvt.perl-ext-common: ...,clipboard
+! Recuerda aniadir on_sel_grab
+! http://stoffe.deephacks.org/2012/03/10/copy-paste-urxvt.html
+! Problema con xsel, con buffers de copia, primary secondary and clipboard
 URxvt.keysym.M-c:     perl:clipboard:copy
 URxvt.keysym.M-v:     perl:clipboard:paste
 URxvt.keysym.M-C-v:   perl:clipboard:paste_escaped

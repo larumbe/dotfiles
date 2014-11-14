@@ -8,8 +8,12 @@
 
 ;; Mira en elpa, helm interface anything ya esta disponible
 ;; Yassnippet anything interface
-(load-file "~/.emacs.d/anything-c-yasnippet-2.el")
-(define-key yas-minor-mode-map (kbd "C-c C-y") 'anything-yasnippet-2)
+;; (load-file "~/.emacs.d/anything-c-yasnippet-2.el")
+;; (define-key yas-minor-mode-map (kbd "C-c C-y") 'anything-yasnippet-2)
+;; Ya no usas anything,
+;; Esto no va
+;; (define-key yas-minor-mode-map (kbd "C-c C-y") 'helm-c-yas-all-templates)
+
 ;; Su manual es una mierda, dice que deberia ser asi, no obstante es como en la siguiente linea
 ;; (setq yas-trigger-key "C-c & y")
 ;; (setq yas/trigger-key "C-c & y")
@@ -19,7 +23,7 @@
 
 ;; Forewritten snippets
 ;; Tendras que ponerlo como hook
-(yas-load-directory "~/.emacs.d/elpa/yasnippet-20130907.1855/snippets/")
+;; Por que no se cargan automaticamente?
+;; (yas-load-directory "~/.emacs.d/elpa/yasnippet-20130907.1855/snippets/")
 
 ;; More user-contributed templates
-

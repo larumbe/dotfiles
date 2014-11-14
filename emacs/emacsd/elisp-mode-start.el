@@ -65,9 +65,9 @@
   (eldoc-mode t)
   (yas-minor-mode t)
   (nlinum-mode)
-  (pretty-lambda-mode t)
-  (paredit-mode)
-  (paren-face-mode)
+  ;; (pretty-lambda-mode t)
+  ;; (paredit-mode)
+  ;; (paren-face-mode)
   )
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-activation)
