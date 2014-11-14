@@ -476,6 +476,7 @@
 (autoload 'magit-status "magit" nil t)
 (global-set-key (kbd "C-z m") 'magit-status)
 ;; magit-repo-dirs (default repositories to look at after magit-status)
+(setq vc-follow-symlinks nil)
 
 
 (global-set-key (kbd "C-z l") 'load-file)

@@ -11,6 +11,8 @@
 ;; http://www.emacswiki.org/emacs/EmacsNewbieWithIcicles
 ;; http://www.emacswiki.org/emacs/Icicles_-_Nutshell_View
 
+(require 'pretty-lambdada)
+
 ;; This should go somewhere else
 (define-prefix-command 'Apropos-Prefix nil "Apropos (a,c,d,l,v,C-v)")
 (global-set-key (kbd "C-q C-a") 'Apropos-Prefix)
@@ -63,9 +65,9 @@
   (auto-complete-mode t)
   (add-elisp-ac-sources)
   (eldoc-mode t)
-  (yas-minor-mode t)
+  (yas/minor-mode t)
   (nlinum-mode)
-  (pretty-lambda-mode t)
+  (pretty-lambda-mode)
   (paredit-mode)
   (paren-face-mode)
   )
