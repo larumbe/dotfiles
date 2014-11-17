@@ -1,1 +1,1 @@
-;; org-persist.el - larumbe at <2014-11-13 jue 22:29>
+;; org-persist.el - larumbe at <2014-11-17 lun 01:14>

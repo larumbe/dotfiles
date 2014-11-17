@@ -123,10 +123,10 @@
 
 ;; Anything mode
 ;; Cambialo por helm inmediatamente
-(require 'anything)
-(global-set-key (kbd "C-x a") 'anything)
+;; (require 'anything)
+;; (global-set-key (kbd "C-x a") 'anything)
 ;; (global-set-key (kbd "C-q m") 'anything-help)
-(define-key anything-map (kbd "C-q m") 'anything-help)
+;; (define-key anything-map (kbd "C-q m") 'anything-help)
 
 ;; Help key bindings
 (global-set-key (kbd "C-q") 'help-command)
@@ -186,7 +186,8 @@
 (load-file "~/.emacs.d/elisp-mode-start.el")
 
 ;; c-mode
-(load-file "~/.emacs.d/c-mode-start2.el")
+;; (load-file "~/.emacs.d/c-mode-start2.el")
+(load-file "~/.emacs.d/c-mode-setup.el")
 
 ;; C++
 
@@ -515,7 +516,19 @@
 ;;; http://www.emacswiki.org/emacs/Anything
 ;;; http://metasandwich.com/2010/07/30/what-can-i-get-for-10-dolla-anything-el/
 ;;; anything.el basic stuff, anything-
+;;; Helm
 
+(require 'helm)
+(require 'helm-config)
+
+(global-set-key (kbd "C-x a") 'helm-mini)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") 'helm-select-action)
+
+(global-set-key (kbd "C-x c") 'helm-command-prefix)
+
+;;; Company mode, should replace autocomplete altogether
+(require 'company)
 
 ;;; Org mode
 (load-file "~/.emacs.d/org-start.el")
@@ -581,3 +594,4 @@
 ;;; Mejorar
 (global-set-key (kbd "C-]") 'scroll-down-command)
 (global-set-key (kbd "C-\\") 'scroll-up-command)
+
