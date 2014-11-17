@@ -36,7 +36,7 @@
 			  (global-semantic-highlight-func-mode)))
 
 ;;; Yasnippet shit
-(add-hook 'c-mode-hook 'yas-minor-mode)
+(add-hook 'c-mode-hook 'yas/minor-mode)
 
 ;;; Other modes
 (defun my:c-mode-stuff ()

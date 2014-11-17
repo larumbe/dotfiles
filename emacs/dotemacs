@@ -144,7 +144,7 @@
 
 ;; yas-snippets
 (require  'yasnippet)
-;; (load-file "~/.emacs.d/yas-start.el")
+(load-file "~/.emacs.d/yas-start.el")
 
 ;; (define-key erc-mode-map (kbd "C-c q") 'erc-cmd-QUERY)
 
@@ -169,7 +169,7 @@
 ;; (load-file "~/emacs/.emacs.d/perl-mode-start.el")
 
 ;; Python
-;; Arreglalo, no se que cojones le pasa a todos esos paquetes
+;; Arreglalo, algo con yasnippet y elpy
 ;; (load-file "~/.emacs.d/python-start.el") 
 
 ;; HTMl
@@ -515,7 +515,17 @@
 ;;; http://www.emacswiki.org/emacs/Anything
 ;;; http://metasandwich.com/2010/07/30/what-can-i-get-for-10-dolla-anything-el/
 ;;; anything.el basic stuff, anything-
+;;; Helm
+(require 'helm-config)
 
+(global-set-key (kbd "C-z a") 'helm-mini)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z") 'helm-select-action)
+
+(global-set-key (kbd "C-x c") 'helm-command-prefix)
+
+;;; Company mode, should replace autocomplete altogether
+(require 'company)
 
 ;;; Org mode
 (load-file "~/.emacs.d/org-start.el")
@@ -581,3 +591,4 @@
 ;;; Mejorar
 (global-set-key (kbd "C-]") 'scroll-down-command)
 (global-set-key (kbd "C-\\") 'scroll-up-command)
+

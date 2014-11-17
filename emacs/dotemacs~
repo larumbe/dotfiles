@@ -144,7 +144,7 @@
 
 ;; yas-snippets
 (require  'yasnippet)
-;; (load-file "~/.emacs.d/yas-start.el")
+(load-file "~/.emacs.d/yas-start.el")
 
 ;; (define-key erc-mode-map (kbd "C-c q") 'erc-cmd-QUERY)
 
@@ -169,7 +169,7 @@
 ;; (load-file "~/emacs/.emacs.d/perl-mode-start.el")
 
 ;; Python
-;; Arreglalo
+;; Arreglalo, algo con yasnippet y elpy
 ;; (load-file "~/.emacs.d/python-start.el") 
 
 ;; HTMl
@@ -476,6 +476,7 @@
 (autoload 'magit-status "magit" nil t)
 (global-set-key (kbd "C-z m") 'magit-status)
 ;; magit-repo-dirs (default repositories to look at after magit-status)
+(setq vc-follow-symlinks nil)
 
 
 (global-set-key (kbd "C-z l") 'load-file)
