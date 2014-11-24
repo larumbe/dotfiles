@@ -5,6 +5,18 @@
 ;; Helm-ctags
 ;; https://github.com/syohex/emacs-helm-gtags 
 
+(require 'helm)
+(require 'helm-config)
+
+(global-set-key (kbd "C-z h") 'helm-command-prefix)
+(global-set-key (kbd "C-z C-e") 'helm-M-x)
+
+(define-key helm-command-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-command-map (kbd "C-z") 'helm-select-action)
+(define-key helm-command-map (kbd "C-y") 'helm-mark-ring)
+(define-key helm-command-map (kbd "C-e") 'helm-do-grep)
+
+
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
@@ -28,15 +40,13 @@
 
 ;; ac-helm
 ;; Modificalo para que no aparezca la ventana de autocomplete y si la de helm
-(global-set-key (kbd "C-:") 'ac-complete-with-helm)
-(define-key ac-complete-mode-map (kbd "C-M-;") 'ac-complete-with-helm)
+;; (global-set-key (kbd "C-:") 'ac-complete-with-helm)
+;; (define-key ac-complete-mode-map (kbd "C-M-;") 'ac-complete-with-helm)
 
+;; Modifica C-] para que no sea helm-tags
+(define-key helm-gtags-mode-map (kbd "C-c g C-s") 'helm-gtags-show-stack)
 
+;; COMPANY
 
-
-
-
-
-
-
-
+;; More functions
+;; (define-key c-mode-map (kbd "C-z h y") 'helm-show-kill-ring)

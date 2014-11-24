@@ -32,10 +32,12 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-s") 'speedbar)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'ielm)
 (define-key emacs-lisp-mode-map (kbd "C-;") 'iedit-mode)
+(define-key emacs-lisp-mode-map (kbd "C-c <tab>") 'company-complete)
+(define-key emacs-lisp-mode-map (kbd "C-c C-y") 'helm-yas-complete)
+
 ;; (define-key emacs-lisp-mode-map (kbd "C-c s") '(lambda () (interactive) (symbolp (symbol-at-point))))
 ;; (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'ecb-activate)
 ;; (define-key emacs-lisp-mode-map (kbd "C-c M-e") 'ecb-deactivate)
-
 
 ;;; completation: Recuerda usar C-M-i (completion-at-point), es mas rapido que autocomplete
 
@@ -48,20 +50,21 @@
 
 ;; Como hacer que una variable solo en un modo
 ;; Haz algo para que esto se haga una sola vez, no en cada entrada en elisp-mode
-(defun add-elisp-ac-sources ()
-  "Adding elisp auto-complete sources"
-  (setq ac-sources '(ac-source-features
-		     ac-source-filename
-		     ac-source-functions
-		     ac-source-symbols
-		     ac-source-variables
-		     ac-source-words-in-same-mode-buffers)))
+;; (defun add-elisp-ac-sources ()
+;;   "Adding elisp auto-complete sources"
+;;   (setq ac-sources '(ac-source-features
+;; 		     ac-source-filename
+;; 		     ac-source-functions
+;; 		     ac-source-symbols
+;; 		     ac-source-variables
+;; 		     ac-source-words-in-same-mode-buffers)))
 
 (defun elisp-activation ()
   "Everything necesssary to bring my elisp environment up to work"
   (interactive)
-  (auto-complete-mode t)
-  (add-elisp-ac-sources)
+  ;; (auto-complete-mode t)
+  ;; (add-elisp-ac-sources)
+  (company-mode 1)
   (eldoc-mode t)
   (yas-minor-mode t)
   (nlinum-mode)

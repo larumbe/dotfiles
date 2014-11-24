@@ -17,9 +17,9 @@
 ;; Su manual es una mierda, dice que deberia ser asi, no obstante es como en la siguiente linea
 ;; (setq yas-trigger-key "C-c & y")
 ;; (setq yas/trigger-key "C-c & y")
-(define-key yas-minor-mode-map [(tab)] nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "C-c y") 'yas-expand)
+;; (define-key yas-minor-mode-map [(tab)] nil)
+;; (define-key yas-minor-mode-map (kbd "TAB") nil)
+;; (define-key yas-minor-mode-map (kbd "C-c y") 'yas-expand)
 
 ;; Forewritten snippets
 ;; Tendras que ponerlo como hook

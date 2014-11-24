@@ -8,6 +8,9 @@
 ;; You need to set the whole file in org mode for drawers
 ;; and additional references
 
+;; (load-file (concat user-emacs-directory "cedet/cedet-devel-load.el"))
+;; (load-file (concat user-emacs-directory "cedet/contrib/cedet-contrib-load.el"))
+
 ;;; Global theme customisation
 (setq custom-enabled-themes '(misterioso))
 (load-theme 'misterioso t)
@@ -79,7 +82,7 @@
 ;; !!!!!!!!!!!!!!!!!!!
 
 ;; Auto-complete settings
-(load-file "~/.emacs.d/autocomplete-start.el")
+;; (load-file "~/.emacs.d/autocomplete-start.el")
 
 ;; Avance progresivo
 ;; Section: scrolling, moving
@@ -134,8 +137,10 @@
 ;; Cambialo por helm inmediatamente
 ;; (require 'anything)
 ;; (global-set-key (kbd "C-x a") 'anything)
-(load-file ".emacs.d/helm-config.el")
+(load-file "~/.emacs.d/helm-config.el")
 (global-set-key (kbd "C-x a") 'helm-mini)
+
+
 
 ;; (global-set-key (kbd "C-q m") 'anything-help)
 ;; (define-key helm-map (kbd "C-q m") 'helm-help)
@@ -155,8 +160,8 @@
 (setq erc-hide-timestamps t)
 
 ;; yas-snippets
-(require  'yasnippet)
-(load-file "~/.emacs.d/yas-start.el")
+;; (require  'yasnippet)
+;; (load-file "~/.emacs.d/yas-start.el")
 
 ;; (define-key erc-mode-map (kbd "C-c q") 'erc-cmd-QUERY)
 
@@ -199,7 +204,6 @@
 (load-file "~/.emacs.d/elisp-mode-start.el")
 
 ;; c-mode
-;; (load-file "~/.emacs.d/c-mode-start2.el")
 (load-file "~/.emacs.d/c-mode-setup.el")
 
 ;; C++
@@ -270,23 +274,23 @@
 ;; (setq eclimd-wait-for-process nil)
 ;; start-eclimd para iniciar el demonio
 ;; Esto tendras que verlo, en autocomplete
-(require 'auto-complete-config)
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
 ;; (require 'ac-emacs-eclim-source)
 ;; (ac-emacs-eclim-config)
 
 ;; ECB
-(require 'ecb)
-(global-set-key (kbd "C-x C-M-e") 'ecb-minor-mode)
-(define-prefix-command 'ecb-myprefix nil "Goto ECB Frame (1,2,c,d,h,m,s)")
-(define-key ecb-mode-map (kbd "C-c C-.") 'ecb-myprefix)
-(define-key ecb-myprefix (kbd "1") 'ecb-goto-window-edit1)
-(define-key ecb-myprefix (kbd "2") 'ecb-goto-window-edit2)
-(define-key ecb-myprefix (kbd "c") 'ecb-goto-window-compilation)
-(define-key ecb-myprefix (kbd "d") 'ecb-goto-window-directories)
-(define-key ecb-myprefix (kbd "h") 'ecb-goto-window-history)
-(define-key ecb-myprefix (kbd "m") 'ecb-goto-window-methods)
-(define-key ecb-myprefix (kbd "s") 'ecb-goto-window-sources)
+;; (require 'ecb)
+;; (global-set-key (kbd "C-x C-M-e") 'ecb-minor-mode)
+;; (define-prefix-command 'ecb-myprefix nil "Goto ECB Frame (1,2,c,d,h,m,s)")
+;; (define-key ecb-mode-map (kbd "C-c C-.") 'ecb-myprefix)
+;; (define-key ecb-myprefix (kbd "1") 'ecb-goto-window-edit1)
+;; (define-key ecb-myprefix (kbd "2") 'ecb-goto-window-edit2)
+;; (define-key ecb-myprefix (kbd "c") 'ecb-goto-window-compilation)
+;; (define-key ecb-myprefix (kbd "d") 'ecb-goto-window-directories)
+;; (define-key ecb-myprefix (kbd "h") 'ecb-goto-window-history)
+;; (define-key ecb-myprefix (kbd "m") 'ecb-goto-window-methods)
+;; (define-key ecb-myprefix (kbd "s") 'ecb-goto-window-sources)
 
 ;; Quiza todo lo de semantic deberia ir aqui
 
@@ -379,6 +383,9 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 
+;; Smooth scrolling
+(setq scroll-step 1)
+
 ;;; Scroll commands
 ;;; I can't keep the C-z combo active after each use, pain in the ass
 ;; (global-set-key (kbd "C-z C-n") 'scroll-up-command)
@@ -386,7 +393,8 @@
 
 ;;; 9 - RUNNING COMMANDS BY NAME
 ;;; execute-extended-command
-(global-set-key (kbd "C-z C-e") 'execute-extended-command)
+;; Substitued by helm-M-x
+;; (global-set-key (kbd "C-z C-e") 'execute-extended-command)
 
 ;; 11 MARK
 ;; (delete-selection-mode ) ; causes self-insert-command to replace text in the active region
@@ -469,6 +477,9 @@
 ;; (global-set-key (kbd "M-v") 'previous-buffuer)
 ;; (global-set-key (kbd "C-v") 'next-buffer)
 
+;; iswitch buffer para C-x 4 b
+(iswitchb-mode 1)
+
 ;;; Don't ask for confirmation before killing an unmodified buffer
  (defun volatile-kill-buffer ()
    "Kill current buffer unconditionally."
@@ -476,6 +487,9 @@
    (let ((buffer-modified-p nil))
      (kill-buffer (current-buffer))))
 (global-set-key (kbd "C-x k") 'volatile-kill-buffer)
+
+;; No ask to kill buffer
+(setq buffer-offer-save nil)
 
 ;;; 22 INTERNATIONAL
 (global-set-key (kbd "C-z M-i") 'set-input-method)
@@ -488,6 +502,9 @@
 ;; 28 MAINTAINING LARGE PROGRAMMES
 
 ;; 28.1 VERSION CONTROL
+;; the default face for marked log entries are too hard to spot
+;; http://lgfang.github.io/emacs/emacs-vc.html
+;; http://www.emacswiki.org/emacs/VersionControl
 ;; http://www.emacswiki.org/emacs/Git
 ;; http://alexott.net/en/writings/emacs-vcs/EmacsGit.html
 ;; Magit, most popular interface
@@ -496,6 +513,8 @@
 ;; magit-repo-dirs (default repositories to look at after magit-status)
 ;; I do not want to ask for confirm every time i follow symlink to vc file
 (setq vc-follow-symlinks nil)
+
+;; (eval-after-load "vc-hooks" '(define-key vc-prefix-map "=" 'ediff-revision))
 
 ;; More practical keystrokes
 (global-set-key (kbd "C-z l") 'load-file)
@@ -576,6 +595,9 @@
 ;;; gnu global for c files, helm interface for it would be best
 ;;; Difference c-mode-hook c-mode-common-hook
 
+(require 'yasnippet)
+(yas-load-directory "~/.emacs.d/elpa/yasnippet-20141102.1554/snippets/")
+
 ;;; Autocomplete:
 ;;;	Poder completar sin tener que aniadir caracteres
 ;;;	Completar la primera entrada sin tener que bajar
@@ -610,3 +632,13 @@
   (interactive)
   (find-file "~/projects/rtk-20130208-8676S-Router2015/user/boa/src/LINUX/"))
 (global-set-key (kbd "C-z 2") 'open-project)
+
+;; Google translate, read the code
+(require 'google-translate)
+(require 'google-translate-default-ui)
+(global-set-key (kbd "C-z C-g") 'google-translate-at-point)
+(global-set-key (kbd "C-z g") 'google-translate-query-translate)
+
+;; Ediff setup
+(require 'ediff )
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
