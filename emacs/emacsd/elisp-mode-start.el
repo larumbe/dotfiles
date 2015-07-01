@@ -34,6 +34,8 @@
 (define-key emacs-lisp-mode-map (kbd "C-;") 'iedit-mode)
 (define-key emacs-lisp-mode-map (kbd "C-c <tab>") 'company-complete)
 (define-key emacs-lisp-mode-map (kbd "C-c C-y") 'helm-yas-complete)
+(define-key emacs-lisp-mode-map (kbd "C-c C-j") 'helm-imenu)
+(define-key emacs-lisp-mode-map (kbd "C-z M-y") 'yas/exit-all-snippets)
 
 ;; (define-key emacs-lisp-mode-map (kbd "C-c s") '(lambda () (interactive) (symbolp (symbol-at-point))))
 ;; (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'ecb-activate)
@@ -59,6 +61,8 @@
 ;; 		     ac-source-variables
 ;; 		     ac-source-words-in-same-mode-buffers)))
 
+(require 'pretty-lambdada)
+
 (defun elisp-activation ()
   "Everything necesssary to bring my elisp environment up to work"
   (interactive)
@@ -68,9 +72,10 @@
   (eldoc-mode t)
   (yas-minor-mode t)
   (nlinum-mode)
-  ;; (pretty-lambda-mode t)
-  ;; (paredit-mode)
-  ;; (paren-face-mode)
+  (pretty-lambda-mode t)
+  (paredit-mode)
+  (rainbow-delimiters-mode)
+  (highlight-defined-mode)
   )
 
 (add-hook 'emacs-lisp-mode-hook 'elisp-activation)

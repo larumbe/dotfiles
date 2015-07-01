@@ -93,11 +93,13 @@
 ;; (define-key python-mode-map (kbd "C-c C-e") 'python-eldoc-at-point) ; I think this is not working
 (define-key python-mode-map (kbd "C-;") 'iedit-mode)
 
+(setq elpy-rpc-backend "jedi")
+
 ;; Pylookup
-(load-file "~/emacs/.emacs.d/pylookup/pylookup.el")
-(setq pylookup-program "~/emacs/.emacs.d/pylookup/pylookup.py")
-(setq pylookup-db-file "~/emacs/.emacs.d/pylookup/pylookup.db")
-(define-key python-mode-map (kbd "C-c h") 'pylookup-lookup)
+;; (load-file "~/emacs/.emacs.d/pylookup/pylookup.el")
+;; (setq pylookup-program "~/emacs/.emacs.d/pylookup/pylookup.py")
+;; (setq pylookup-db-file "~/emacs/.emacs.d/pylookup/pylookup.db")
+;; (define-key python-mode-map (kbd "C-c h") 'pylookup-lookup)
 
 ;;; Info
 (define-key python-mode-map (kbd "C-c i") 'info-lookup-symbol)
@@ -114,7 +116,8 @@
   (which-func-mode)
   (semantic-mode t)
   (highlight-indentation-mode t)
-  (elpy-set-backend "jedi")
+  (jedi:setup)
+  ;; (elpy-set-backend "jedi")
   )
 
 (add-hook 'python-mode-hook 'python-mode-activation)
@@ -133,7 +136,11 @@
 (setq jedi:complete-on-dot t)
 (define-key python-mode-map (kbd "C-c d") 'jedi:show-doc)
 
-;;; Jedi doc window too big
+
+;;; YAS
+(define-key python-mode-map (kbd "C-c C-y") 'helm-yas-complete)
+
+;;;xp Jedi doc window too big
 
 ;;; configure
 ;;; jedi:tooltip-method

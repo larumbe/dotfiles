@@ -17,6 +17,11 @@
 (define-key org-mode-map (kbd "C-c n") 'org-metadown)
 (define-key org-mode-map (kbd "C-c p") 'org-metaup)
 (define-key org-mode-map (kbd "C-c '") 'org-insert-todo-heading)
+(define-key org-mode-map (kbd "M-p") 'org-table-previous-field)
+(define-key org-mode-map (kbd "M-n") 'org-table-next-field)
+
+;;; Global keybindings
+(global-set-key (kbd "C-z J") 'org-clock-goto)
 
 ;;; Capturing stuff
 (setq org-default-notes-file "~/org/remember.org")
@@ -27,7 +32,9 @@
 			      ("e" "Emacs" entry (file+headline
 						  "" "Emacs") "* TODO %?\n %i %T\n %a")
 			      ("p" "Programming" entry (file+headline
-						 "" "Programming") "* TODO %?\n %i %T\n %a")))
+						 "" "Programming") "* TODO %?\n %i %T\n %a")
+			      ("w" "Work" entry (file+headline
+							"" "Work") "* TODO %?\n %i %T\n %a")))
 
 ;;; Saving clock history across Emacs sessions
 (setq org-clock-persist 'history)
@@ -73,8 +80,20 @@
 ;; (global-set-key (kbd "C-z o") 'ordendia-new-entry)
 
 ;;; Common prefix
-(define-prefix-command 'org-prefix nil "Tags action: a (agenda), j (journal), c (capture)")
+(define-prefix-command 'org-prefix nil "Tags action: a (agenda), j (journal), c (capture), i(switch)")
 (global-set-key (kbd "C-z o") 'org-prefix)
 (define-key org-prefix (kbd "a") 'org-agenda)
 (define-key org-prefix (kbd "j") 'org-daily-journal)
 (define-key org-prefix (kbd "c") 'org-capture)
+(define-key org-prefix (kbd "i") 'org-ido-switchb)
+
+;;; Redmine
+;;; https://github.com/gtp/emacs-redmine
+(defun redmine-my-project ()
+  (interactive)
+  (setq redmine-program "~/.emacs.d/emacs-redmine/redmine.py")
+  (setq redmine-project-name "router-2015")
+    (setq redmine-login-key "e626f1935808a89bca1b2a39677e3ec51d12543b")
+  ;; (setq redmine-login-key "myuniquekey##XX##XX")
+  (setq redmine-url "http://192.168.4.2/redmine")
+  (redmine-show-sprints))

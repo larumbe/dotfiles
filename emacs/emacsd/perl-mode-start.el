@@ -46,15 +46,15 @@
   (shell-command-on-region (mark) (point) "perl" "*Perl Output*")
   (display-buffer "*Perl Output*"))
 
-(define-key perl-mode-map (kbd "C-c C-c") 'perl-on-buffer)
-(define-key perl-mode-map (kbd "C-c C-k") '(lambda () (interactive) (kill-buffer "*Perl Output*")))
+(define-key cperl-mode-map (kbd "C-c C-c") 'perl-on-buffer)
+(define-key cperl-mode-map (kbd "C-c C-k") '(lambda () (interactive) (kill-buffer "*Perl Output*")))
 
 ;; symbols
-(define-key perl-mode-map (kbd "C-c u") '(lambda () (interactive) (insert " = ")))
-(define-key perl-mode-map (kbd "C-c i") '(lambda () (interactive) (insert "_")))
-(define-key perl-mode-map (kbd "C-c j") '(lambda () (interactive) (insert "$")))
-(define-key perl-mode-map (kbd "C-c k") '(lambda () (interactive) (insert "@")))
-(define-key perl-mode-map (kbd "C-c ;") '(lambda () (interactive)
+(define-key cperl-mode-map (kbd "C-c u") '(lambda () (interactive) (insert " = ")))
+(define-key cperl-mode-map (kbd "C-c i") '(lambda () (interactive) (insert "_")))
+(define-key cperl-mode-map (kbd "C-c j") '(lambda () (interactive) (insert "$")))
+(define-key cperl-mode-map (kbd "C-c k") '(lambda () (interactive) (insert "@")))
+(define-key cperl-mode-map (kbd "C-c ;") '(lambda () (interactive)
 					   (move-end-of-line 1)
 					   (insert ";")))
 
