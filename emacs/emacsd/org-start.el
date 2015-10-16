@@ -80,12 +80,14 @@
 ;; (global-set-key (kbd "C-z o") 'ordendia-new-entry)
 
 ;;; Common prefix
-(define-prefix-command 'org-prefix nil "Tags action: a (agenda), j (journal), c (capture), i(switch)")
+(define-prefix-command 'org-prefix nil "Tags action: a(agenda), j(clock), c(capture), i(switch), d(journal)")
 (global-set-key (kbd "C-z o") 'org-prefix)
 (define-key org-prefix (kbd "a") 'org-agenda)
-(define-key org-prefix (kbd "j") 'org-daily-journal)
+;; (define-key org-prefix (kbd "j") 'org-daily-journal)
 (define-key org-prefix (kbd "c") 'org-capture)
 (define-key org-prefix (kbd "i") 'org-ido-switchb)
+(define-key org-prefix (kbd "j") 'org-clock-goto)
+(define-key org-prefix (kbd "d") 'org-journal-new-entry)
 
 ;;; Redmine
 ;;; https://github.com/gtp/emacs-redmine

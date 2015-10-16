@@ -123,8 +123,9 @@
 (define-key c-mode-map (kbd "C-c M-y") 'yas/exit-all-snippets)
 
 ;; Subversion
-(require 'dsvn)
-(define-key c-mode-map (kbd "C-c s") 'svn-status)
+;; (require 'dsvn)
+;; (define-key c-mode-map (kbd "C-c s") 'svn-status)
+
 
 ;; Iedit
 (require 'iedit)
@@ -141,13 +142,15 @@
 (define-key c-mode-base-map (kbd "C-c w") 'semantic-ia-fast-jump)
 (define-key c-mode-base-map (kbd "C-c e") 'semantic-ia-show-doc)
 (define-key c-mode-base-map (kbd "C-c r") 'semantic-add-system-include)
+(define-key c-mode-base-map (kbd "C-c C-r") 'semantic-reset-system-include)
 (define-key c-mode-base-map (kbd "C-c t") 'semantic-c-add-preprocessor-symbol)
 
 ;; Compilation
 (define-key c-mode-base-map (kbd "C-c C-c") 'compile)
 ;; Debugging
 (define-key c-mode-base-map (kbd "C-c C-g") 'gdb)
-
+;;; header/code fast switching
+(define-key c-mode-base-map (kbd "C-c C-s") 'ff-find-other-file)
 
 ;;; Marking functions
 (define-key c-mode-base-map (kbd "C-c d") 'mark-defun)
@@ -194,7 +197,14 @@
 					     (insert "_")))
 (define-key c-mode-base-map (kbd "C-c [") '(lambda () (interactive)
 					     (insert "->")))
-
+(define-key c-mode-base-map (kbd "C-c k") '(lambda () (interactive)
+					     (insert "&")))
+(define-key c-mode-base-map (kbd "C-c l") '(lambda () (interactive)
+					     (insert "*")))
+(define-key c-mode-base-map (kbd "C-c a") '(lambda () (interactive)
+					     (insert "(")))
+(define-key c-mode-base-map (kbd "C-c s") '(lambda () (interactive)
+					     (insert ")")))
 
 (define-key c-mode-base-map (kbd "C-z M-]") 'diff-hl-next-hunk)
 (define-key c-mode-base-map (kbd "C-z M-[") 'diff-hl-previous-hunk)
