@@ -42,6 +42,12 @@
   (js2-minor-mode)
   )
 
+(add-hook 'js2-mode-hook 'my:js2-start)
+
+
+
+(define-key js2-minor-mode-map (kbd "C-c w") 'web-mode)
+(define-key web-mode-map (kbd "C-c j") 'js2-mode)
 
 (define-key js2-minor-mode-map (kbd "C-c i") '(lambda () (interactive)
 					     (end-of-line)

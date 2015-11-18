@@ -702,6 +702,7 @@ and set the focus back to Emacs frame"
 
 ;;; ERC, eventually move it into its own file
 (global-set-key (kbd "C-z 1") 'erc)
+;; (define-key erc-mode-map (kbd "C-c o") 'browse-url)
 
 ;;; Auto-fill mode, change section
 (global-set-key (kbd "C-z M-f") 'auto-fill-mode)
@@ -825,6 +826,8 @@ buffer is not visiting a file."
 (setq projectile-enable-caching t )
 (define-key projectile-mode-map (kbd "C-c p C-g") 'projectile-grep)
 (global-set-key (kbd "C-c h g C-c") 'ahg-do-command)
+(define-key ahg-glog-mode-map (kbd "d") 'ahg-glog-view-diff)
+(define-key ahg-log-mode-map (kbd "d") 'ahg-log-view-diff)
 
 (setq projectile-switch-project-action 'projectile-dired)
 (global-set-key (kbd "C-\\") 'projectile-switch-to-buffer)

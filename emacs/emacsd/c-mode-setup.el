@@ -208,6 +208,8 @@
 
 (define-key c-mode-base-map (kbd "C-z M-]") 'diff-hl-next-hunk)
 (define-key c-mode-base-map (kbd "C-z M-[") 'diff-hl-previous-hunk)
+(define-key c-mode-base-map (kbd "C-c n") '(lambda () (interactive)
+						 (switch-to-buffer "*compilation*")))
 
 ;;; Beginning of indentation
 (define-key c-mode-base-map (kbd "C-,") 'back-to-indentation)
