@@ -471,7 +471,8 @@
     (skip-syntax-backward "w_")
     (mark-thing 'symbol)))
 
-(global-set-key (kbd "C-x w") 'mark-a-word-or-thing)
+(global-set-key (kbd "C-M-w") 'mark-a-word-or-thing)
+(global-set-key (kbd "C-x w") 'append-next-kill)
 
 ;;; Browsing mark ring
 (global-set-key (kbd "C-z f") 'forward-mark)
